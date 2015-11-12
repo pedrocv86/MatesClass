@@ -1,0 +1,5 @@
+INDEX VERSION 1.126
+D:\ProyectosEclipse\MatesClass\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2576150763.index
+\matesclass\src\main\resources
+D:\ProyectosEclipse\MatesClass\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2173789570.index
+\MatesClass\src\main\resources

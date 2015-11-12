@@ -1,0 +1,44 @@
+
+<ui:composition template="plantilla.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="title">
+		<h:outputText value="Inicio" />
+	</ui:define>
+
+	<ui:define name="principal">
+		<h:form>
+			<div id="principal">
+		<div id="categorias">
+			<div class="catizda">
+				<br />1º E.S.O.
+			</div>
+			<div class="catdcha">
+				<br />2º E.S.O.
+			</div>
+			<div class="catizda">
+				<br />3º E.S.O.
+			</div>
+			<div class="catdcha">
+				<br />4º E.S.O.
+			</div>
+		</div>
+
+		<div style="color: #bbbbbb">
+			<hr />
+			<p>
+				Aquí el usuario elige categoría.<br />
+				<br /> Al elegirla, se creará una nueva partida a la que le daremos nombre, 
+				y en la que comenzaremos a jugar.
+			</p>
+			<hr />
+		</div>
+
+	</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
