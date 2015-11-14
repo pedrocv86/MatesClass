@@ -1,0 +1,73 @@
+package com.matesclass.persistence.dao;
+
+import java.io.Serializable;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
+
+public abstract class GenericDAO<T, V extends Serializable> implements DAO<T, V> {
+private Class<T> t;
+	
+	
+	protected EntityManager entityManager;
+	
+	
+	public EntityManager getEntityManager() {
+        return entityManager;
+    }
+	
+   /**
+	 * @param entityManager the entityManager to set
+	 */
+	@PersistenceContext
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GenericDAO() {
+		this.t = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
+	
+	public Class<T> getT() {
+		return t;
+	}
+	
+	@Transactional(readOnly = true)
+	public T loadById(V v) {
+		return entityManager.find(t, v);
+	}
+	
+	@Transactional
+	public void persistSinFlush(T entity) {		
+		entityManager.persist(entity);		
+	}
+	
+	@Transactional
+	public void persist(T entity) {		
+		entityManager.persist(entity);		
+		entityManager.flush();
+	}
+	
+	@Transactional
+	public void update(T entity) {
+		entityManager.merge(entity);
+	}
+	
+	@Transactional
+	public void delete(T entity) {
+		Object o = entityManager.merge(entity);
+		entityManager.remove(o);
+	}
+	
+	@Transactional(readOnly = true)
+	@SuppressWarnings("unchecked")
+	public List<T> loadAll() {
+		return entityManager.createQuery("Select t from " + t.getSimpleName() + " t").getResultList();
+	}
+}

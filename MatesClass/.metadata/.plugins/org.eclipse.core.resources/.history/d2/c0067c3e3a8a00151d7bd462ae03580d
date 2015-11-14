@@ -1,0 +1,7 @@
+package com.matesclass.persistence.dao;
+
+import java.io.Serializable;
+
+public interface DAO extends Serializable {
+
+}

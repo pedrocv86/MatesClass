@@ -183,4 +183,8 @@
   <system systemId="http://www.w3.org/2001/xml.xsd" uri="jar:file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.eclipse.xsd_2.9.1.v20140203-1126.jar!/cache/www.w3.org/2001/xml.xsd"/>
   <uri name="http://www.w3.org/2001/XMLSchema" uri="jar:file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.eclipse.xsd_2.9.1.v20140203-1126.jar!/cache/www.w3.org/2001/XMLSchema.xsd"/>
   <uri id="org.w3c.xinclude" name="http://www.w3.org/2001/XInclude" uri="jar:file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.eclipse.wst.xsl.core_1.1.301.v20130423-0632.jar!/xslt-schemas/xinclude.xsd"/>
+  <public publicId="-//Hibernate/Hibernate Mapping DTD 3.0//EN" uri="jar:file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.hibernate.eclipse.libs_3.7.1.Final-v20140303-0022-B124/lib/hibernate/hibernate3.jar!/org/hibernate/hibernate-mapping-3.0.dtd" webURL="http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"/>
+  <public publicId="-//Hibernate/Hibernate Configuration DTD 3.0//EN" uri="jar:file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.hibernate.eclipse.libs_3.7.1.Final-v20140303-0022-B124/lib/hibernate/hibernate3.jar!/org/hibernate/hibernate-configuration-3.0.dtd" webURL="http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"/>
+  <public publicId="-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" uri="jar:platform:/plugin/org.hibernate.eclipse.libs/lib/tools/hibernate-tools.jar!/org/hibernate/hibernate-reverse-engineering-3.0.dtd"/>
+  <public publicId="-//Red Hat, Inc.//DTD Meta 1.0//EN" uri="file:/C:/Users/Pedro/Documents/PORTABLES/eclipse/plugins/org.jboss.tools.common.model_3.5.2.Final-v20140302-2358-B158/schema/meta.dtd"/>
 </catalog>

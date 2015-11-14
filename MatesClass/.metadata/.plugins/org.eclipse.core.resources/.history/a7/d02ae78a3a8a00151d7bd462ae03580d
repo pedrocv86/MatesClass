@@ -1,0 +1,5 @@
+package com.matesclass.persistence.dao;
+
+public abstract class GenericDAO {
+
+}

@@ -6,3 +6,5 @@
 1447273241472	Delete element
 1447273244826	Delete element
 1447274017887	Rename package 'com.matesclass.presentation.controlller'
+1447445200965	Encapsulate field 'idLogro'
+1447445205020	Encapsulate field 'nombreLogro'

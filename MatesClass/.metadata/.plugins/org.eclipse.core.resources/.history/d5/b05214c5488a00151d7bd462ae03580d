@@ -1,0 +1,5 @@
+package com.matesclass.presentation.controller;
+
+public class LogroManagedBean {
+
+}

@@ -1,0 +1,23 @@
+package com.matesclass.presentation.controller;
+
+import java.io.Serializable;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+
+import com.matesclass.persistence.dao.ILogroDAO;
+
+@ManagedBean(name = "LogroMB")
+@ViewScoped
+public class LogroManagedBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2682240388620079641L;
+
+	@ManagedProperty(value = "#{LogroDAO}")
+	private ILogroDAO logroDAO;
+	
+}

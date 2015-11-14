@@ -1,0 +1,5 @@
+package com.matesclass.persistence.dao;
+
+public class LogroDAO extends GenericDAO<Logro, Long> implements ILogroDAO {
+
+}

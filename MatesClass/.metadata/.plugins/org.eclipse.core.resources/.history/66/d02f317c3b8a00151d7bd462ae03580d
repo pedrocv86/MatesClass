@@ -1,0 +1,7 @@
+package com.matesclass.persistence.dao;
+
+import java.io.Serializable;
+
+public abstract class GenericDAO<T, V extends Serializable> implements DAO<T, V> {
+
+}

@@ -1,0 +1,12 @@
+package com.matesclass.presentation.controller;
+
+import java.io.Serializable;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean(name = "LogroMB")
+@ViewScoped
+public class LogroManagedBean implements Serializable {
+
+}

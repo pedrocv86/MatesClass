@@ -1,0 +1,8 @@
+package com.matesclass.persistence.model;
+
+import java.io.Serializable;
+
+
+public class Logro implements Serializable {
+
+}
