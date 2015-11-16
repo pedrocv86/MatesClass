@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<f:facet>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon.ico']}" />
+	<h:outputStylesheet name="style_ini.css" library="css" />
+	<ui:insert name="headInclude">
+		<!--  instruccion para cambiar la hoja de estilo de las paginas basadas en este template -->
+		<h:outputStylesheet name="style_ini.css" library="css" target="head" />			
+		</ui:insert>
+	<title><ui:insert name="titulo"></ui:insert></title>
+	
+	<f:facet name="first">
+		<ui:insert name="control">
+			<meta http-equiv="Pragma" content="no-cache" />
+			<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+			<meta http-equiv="Expires" content="-1" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<link rel="shortcut icon" type="image/x-icon"
+				href="#{resource['favicon.ico']}" />
+		</ui:insert>
+
+		<ui:insert name="title">
+			<title><h:outputText value="" /></title>
+		</ui:insert>
+
+		<ui:insert name="headInclude">
+			<!--  instruccion para cambiar la hoja de estilo de las paginas basadas en este template -->
+			<h:outputStylesheet name="style.css" library="css" target="head" />			
+		</ui:insert>
+		</f:facet>
+</h:head>
+
+<h:body>
+
+	<ui:include src="template/cabecera.xhtml" />
+
+	<ui:include src="template/navegacion.xhtml" />
+
+	<ui:insert name="principal" />
+
+	<ui:include src="template/pie.xhtml" />
+
+</h:body>
+</html>

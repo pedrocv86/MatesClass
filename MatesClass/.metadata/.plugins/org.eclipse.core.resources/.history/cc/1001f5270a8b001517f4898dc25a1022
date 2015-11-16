@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+		<h:outputStylesheet name="../resources/css/style_ini.css" library="css" />
+		<ui:define name="title">
+			<title><h:outputText value="Inicio" /></title>
+		</ui:define>
+</h:head>
+<h:body>		
+	<ui:composition template="plantilla.xhtml">
+	
+		
+
+		<ui:define name="principal">
+			<h:form>
+				<div id="principal">
+					<hr />
+					<p>
+						Esta será la página principal del usuario una vez se haya
+						logueado.<br /> <br /> En ella habrá información variada,
+						referencias, consejos, enlaces, etc.
+					</p>
+					<hr />
+					<br />
+					<!-- 				<p:dataList value="#{LogroMB.listaLogroBean}" var="logro" type="ordered"> -->
+					<!-- 					<f:facet name="header"> -->
+					<!--            				 Logros -->
+					<!--         			</f:facet> -->
+					<!--        				 #{logro.idLogro}, #{logro.nombreLogro} -->
+					<!--     			</p:dataList> -->
+
+					<p:dataTable var="logro" value="#{LogroMB.listaLogroBean}">
+						<p:column headerText="Id">
+							<h:outputText value="#{logro.idLogro}" />
+						</p:column>
+
+						<p:column headerText="Nombre">
+							<h:outputText value="#{logro.nombreLogro}" />
+						</p:column>
+					</p:dataTable>
+					<br />
+					<p:commandButton id="prueba" value="Prueba" styleClass="button"></p:commandButton>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+	</h:body>
+</html>

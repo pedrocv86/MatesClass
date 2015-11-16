@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.matesclass.persistence.model.Logro;
@@ -13,7 +12,10 @@ import com.matesclass.presentation.beans.LogroBean;
 @Repository
 public class LogroDAO extends GenericDAO<Logro, Long> implements ILogroDAO {
 
-	public LogroDAO(){}
+	public LogroDAO(){
+		
+	}
+	
 	@Override
 	public List<LogroBean> mostrarLogros() {
 		StringBuffer consulta = new StringBuffer();

@@ -1,0 +1,27 @@
+package com.matesclass.persistence.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "USU_LOGRO")
+public class UsuLogro implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8265712177510867880L;
+	
+	@Id
+	@Column(name = "ID_LOGRO")
+	private Long idLogro;
+	
+	@Id
+	@Column(name = "ID_USUARIO")
+	private String idUsuario;
+
+}

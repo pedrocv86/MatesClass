@@ -1,0 +1,12 @@
+package com.matesclass.persistence.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "USU_LOGRO")
+public class UsuLogro implements Serializable {
+
+}

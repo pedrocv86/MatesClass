@@ -7,10 +7,23 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet name="style_ini.css" library="css" />
-	<link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon.ico']}" />
-	<title><ui:insert name="titulo"> Plantilla </ui:insert></title>
+
+	<f:facet name="first">
+		<ui:insert name="control">
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<link rel="shortcut icon" type="image/x-icon"
+				href="#{resource['favicon.ico']}" />
+		</ui:insert>
+
+		<ui:insert name="title">
+			<title><h:outputText value="" /></title>
+		</ui:insert>
+
+		<ui:insert name="headInclude">
+			<!--  instruccion para cambiar la hoja de estilo de las paginas basadas en este template -->
+			<h:outputStylesheet name="style_ini.css" library="css" target="head" />			
+		</ui:insert>
+		</f:facet>
 </h:head>
 
 <h:body>

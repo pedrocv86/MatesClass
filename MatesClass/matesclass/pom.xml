@@ -153,5 +153,32 @@
 			</plugin>
 		</plugins>
 		<finalName>MatesClass</finalName>
+	<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>*.properties</exclude>
+					<exclude>applicationContext*.xml</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.properties</include>
+					<include>applicationContext*.xml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
+	<properties>
+		<hibernate.show_sql>true</hibernate.show_sql>
+		<matesclass.web.jdbc_comun.driverName>oracle.jdbc.OracleDriver</matesclass.web.jdbc_comun.driverName>
+		<matesclass.web.jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</matesclass.web.jdbc.url>
+		<matesclass.web.jdbc.user>MATESCLASS</matesclass.web.jdbc.user>
+		<matesclass.web.jdbc.password>pcvmatesclass</matesclass.web.jdbc.password>
+		<matesclass.web.jdbc_comun.pool_conexiones.maxSize>10</matesclass.web.jdbc_comun.pool_conexiones.maxSize>
+		<matesclass.web.jdbc_comun.pool_conexiones.minSize>1</matesclass.web.jdbc_comun.pool_conexiones.minSize>
+		<hibernate.database_platform>org.hibernate.dialect.Oracle9Dialect</hibernate.database_platform>
+	</properties>
 </project>

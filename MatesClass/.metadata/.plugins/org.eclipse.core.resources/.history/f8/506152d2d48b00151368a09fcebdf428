@@ -1,0 +1,28 @@
+package com.matesclass.persistence.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PARTIDA")
+public class Partida implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5700382842996854275L;
+	
+	@Id
+	@SequenceGenerator(name = "PARTIDA_IDPARTIDA_PARTIDA", sequenceName = "PARTIDA_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PARTIDA_IDPARTIDA_PARTIDA")
+	@Column(name = "ID_ACLARACION")
+	private long idAclaracion;
+
+}

@@ -3,6 +3,7 @@ package com.matesclass.persistence.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
@@ -15,6 +16,7 @@ public class Logro implements Serializable {
 	 */
 	private static final long serialVersionUID = 2262539056378248469L;
 
+	@Id
 	@Column(name = "ID_LOGRO")
 	private Long idLogro;
 
@@ -22,7 +24,12 @@ public class Logro implements Serializable {
 	private String nombreLogro;
 
 	public Logro() {
-		
+
+	}
+
+	public Logro(Long idLogro, String nombreLogro) {
+		this.idLogro = idLogro;
+		this.nombreLogro = nombreLogro;
 	}
 
 	public Long getIdLogro() {

@@ -1,0 +1,90 @@
+package com.matesclass.presentation.controller;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.matesclass.persistence.dao.ILogroDAO;
+import com.matesclass.persistence.dao.LogroDAO;
+import com.matesclass.presentation.beans.LogroBean;
+
+@ManagedBean(name = "LogroMB")
+@ViewScoped
+public class LogroManagedBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2682240388620079641L;
+
+	//@Autowired
+	//private ILogroDAO logroDAO;
+	
+	@ManagedProperty(value = "#{LogroDAO}")
+	ILogroDAO logroDAO;
+	
+	@Resource(name="jdbc/matesclass")
+	private DataSource ds;
+	
+	List<LogroBean> listaLogroBean = new ArrayList<LogroBean>();
+	Connection con=null;
+
+	@PostConstruct
+	public void init() {
+		cargarListaLogros();
+		
+	}
+	
+	public void cargarListaLogros(){
+		setListaLogroBean(logroDAO.mostrarLogros());
+	}
+	
+	 public List consultaDB(Connection con) throws ClassNotFoundException, SQLException {
+	        //Carga el driver
+	        Class.forName("oracle.jdbc.OracleDriver");
+	        //Establece la conexión
+	        String connectUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+	        con = DriverManager.getConnection(connectUrl,"MATESCLASS","pcvmatesclass");
+	        //Crea el objeto de la sentencia que contendrá la consulta
+	        Statement stmt = con.createStatement();
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM LOGRO;");
+	        while (rs.next()){
+	        	listaLogroBean.add(new LogroBean(Long.parseLong(rs.getString("ID_LOGRO")),rs.getString("NOMBRE_LOGRO")));
+	        }
+	        
+	        return listaLogroBean;
+	    }
+	
+	
+	public ILogroDAO getLogroDAO() {
+		return logroDAO;
+	}
+
+	public void setLogroDAO(ILogroDAO logroDAO) {
+		this.logroDAO = logroDAO;
+	}
+
+	public List<LogroBean> getListaLogroBean() {
+		return listaLogroBean;
+	}
+
+	public void setListaLogroBean(List<LogroBean> listaLogroBean) {
+		this.listaLogroBean = listaLogroBean;
+	}
+	
+}
+
