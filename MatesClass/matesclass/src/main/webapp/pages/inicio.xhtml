@@ -22,25 +22,17 @@
 					<hr />
 					<p>
 						Esta será la página principal del usuario una vez se haya
-						logueado.<br /> <br /> En ella habrá información variada,
+						logueado. <br /> En ella habrá información variada,
 						referencias, consejos, enlaces, etc.
 					</p>
 					<hr />
 					<br />
+					<p:outputLabel value="#{LogroMB.textoPantalla}"></p:outputLabel>
+					<br />
 					
-					<p:dataList value="#{LogroMB.listaLogro}" var="logro"
-						type="ordered">
-						<f:facet name="header">
-					    Logros
-					    </f:facet>
-					    #{logro.idLogro}, #{logro.nombreLogro}
-					</p:dataList>
-					
-					<br /> <br />
-
 					<p:dataTable id="logros" var="logro" value="#{LogroMB.listaLogro}"
 						selectionMode="single" selection="#{LogroMB.selectedLogro}"
-						rowKey="#{logro.idLogro}">
+						rowKey="#{logro.idLogro}" styleClass="tabla">
 						<f:facet name="header">
            				 LOGROS
        					 </f:facet>
@@ -56,7 +48,7 @@
 						</p:column>
 					</p:dataTable>
 					<br />
-					<p:commandButton id="prueba" value="Prueba"></p:commandButton>
+					<p:commandButton id="prueba" value="Prueba" ></p:commandButton>
 				</div>
 				<p:growl id="msgs" showDetail="true" />
 			</h:form>

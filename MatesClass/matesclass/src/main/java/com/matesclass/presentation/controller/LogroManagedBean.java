@@ -11,19 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.sql.DataSource;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import com.matesclass.persistence.dao.ILogroDAO;
+import com.matesclass.business.LogroService;
+import com.matesclass.business.UsuarioService;
 import com.matesclass.persistence.model.Logro;
 
 @ManagedBean(name = "LogroMB")
@@ -35,36 +33,30 @@ public class LogroManagedBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -2682240388620079641L;
 
-	// @Autowired
-	// private ILogroDAO logroDAO;
 
-	@ManagedProperty(value = "#{LogroDAO}")
-	ILogroDAO logroDAO;
-
-	@Resource(name = "jdbc/matesclass")
-	private DataSource ds;
+	LogroService logroService = new LogroService();
+	UsuarioService usuarioService = new UsuarioService();
 
 	List<Logro> listaLogro = new ArrayList<Logro>();
 	Logro selectedLogro;
+	
+	String textoPantalla;
 
 	@PostConstruct
 	public void init() {
-		// cargarListaLogros();
+		
+		//usuarioService.insertarUsuario();
+		
 		try {
 			consultaDB();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		
+		//setTextoPantalla(logroService.probarCapas("Prueba de capas"));
 
 	}
 
-	// public void cargarListaLogros(){
-	// try {
-	// setListaLogroBean(consultaDB(con));
-	// } catch (ClassNotFoundException | SQLException e) {
-	// e.printStackTrace();
-	// }
-	// }
 
 	public void consultaDB() throws ClassNotFoundException, SQLException {
 
@@ -84,14 +76,6 @@ public class LogroManagedBean implements Serializable {
 
 		setListaLogroBean(listaLogro);
 		con.close();
-	}
-
-	public ILogroDAO getLogroDAO() {
-		return logroDAO;
-	}
-
-	public void setLogroDAO(ILogroDAO logroDAO) {
-		this.logroDAO = logroDAO;
 	}
 
 	public List<Logro> getListaLogro() {
@@ -130,5 +114,17 @@ public class LogroManagedBean implements Serializable {
 				((Logro) event.getObject()).getNombreLogro());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
+	}
+
+	public String getTextoPantalla() {
+		return textoPantalla;
+	}
+
+	public void setTextoPantalla(String textoPantalla) {
+		this.textoPantalla = textoPantalla;
+	}
+
+	public void setListaLogro(List<Logro> listaLogro) {
+		this.listaLogro = listaLogro;
 	}
 }

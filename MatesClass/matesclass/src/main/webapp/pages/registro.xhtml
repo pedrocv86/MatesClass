@@ -14,18 +14,22 @@
 </h:head>
 <h:body>
 	<h:form>
-		<img class="centrar" src="../resources/images/logo_nombre.svg" />
-		<div class="centrardebajo">
-			<p:inputText id="usuario" styleClass="text" />
+		<img class="centrarizda" src="../resources/images/logo_nombre.svg" />
+		<div class="centrardcha">
+			<p:inputText id="usuario" styleClass="anchocaja" />
 			<p:watermark for="usuario" value="Usuario *" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="text" type="password"/>
+			<p:inputText id="pass" styleClass="anchocaja" type="password"/>
 			<p:watermark for="pass" value="Contraseña *" />
+			<br /><br />
+			<p:inputText id="email" styleClass="anchocaja"/>
+			<p:watermark for="email" value="Email *" />
 			<br />
-			<p:commandButton id="login" styleClass="button fleft" value="Login" 
+			<p:commandButton id="registro" styleClass="button anchocaja" value="Registrarse" 
 			action="inicio.jsf"/>
-			<p:commandButton id="registro" styleClass="button fright" value="Registrarse" />
 		</div>
+		<span id="volver">Volver al 
+		<strong><a href="login.jsf">login.</a></strong></span>
 	</h:form>
 </h:body>
 </html>
