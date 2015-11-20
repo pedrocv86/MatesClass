@@ -1,75 +1,56 @@
 package com.matesclass.persistence.dao;
 
-import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+public abstract class GenericDAO {
 
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
+	public Statement consultaDB() throws ClassNotFoundException, SQLException {
 
-import org.springframework.transaction.annotation.Transactional;
+		Class.forName("oracle.jdbc.OracleDriver");
 
-public abstract class GenericDAO<T, V extends Serializable> implements DAO<T, V> {
-	
-	private Class<T> t;
+		Connection con = DriverManager.getConnection(
+				"jdbc:oracle:thin:@localhost:1521:xe", "MATESCLASS",
+				"pcvmatesclass");
 
-	protected EntityManager entityManager;
+		Statement st = con.createStatement();
 
-	public EntityManager getEntityManager() {
-		return entityManager;
+		return st;
 	}
 
-	/**
-	 * @param entityManager
-	 *            the entityManager to set
-	 */
-	@PersistenceContext
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	public PreparedStatement consultaDBSP(String consulta)
+			throws ClassNotFoundException, SQLException {
+
+		Class.forName("oracle.jdbc.OracleDriver");
+
+		Connection con = DriverManager.getConnection(
+				"jdbc:oracle:thin:@localhost:1521:xe", "MATESCLASS",
+				"pcvmatesclass");
+
+		PreparedStatement pst = con.prepareStatement(consulta);
+
+		return pst;
 	}
 
-	@SuppressWarnings("unchecked")
-	public GenericDAO() {
-		this.t = (Class<T>) ((ParameterizedType) getClass()
-				.getGenericSuperclass()).getActualTypeArguments()[0];
+	public void closeConDB(PreparedStatement pst) {
+		try {
+			if (pst.getConnection() != null)
+				pst.getConnection().close();
+		} catch (SQLException SQLe) {
+				SQLe.printStackTrace();
+		}
 	}
 
-	public Class<T> getT() {
-		return t;
+	public void closeConDB(Statement st) {
+		try {
+			if (st.getConnection() != null)
+				st.getConnection().close();
+		} catch (SQLException SQLe) {
+				SQLe.printStackTrace();
+		}
 	}
 
-	@Transactional(readOnly = true)
-	public T loadById(V v) {
-		return entityManager.find(t, v);
-	}
-
-	@Transactional
-	public void persistSinFlush(T entity) {
-		entityManager.persist(entity);
-	}
-
-	@Transactional
-	public void persist(T entity) {
-		entityManager.persist(entity);
-		entityManager.flush();
-	}
-
-	@Transactional
-	public void update(T entity) {
-		entityManager.merge(entity);
-	}
-
-	@Transactional
-	public void delete(T entity) {
-		Object o = entityManager.merge(entity);
-		entityManager.remove(o);
-	}
-
-	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	public List<T> loadAll() {
-		return entityManager.createQuery(
-				"Select t from " + t.getSimpleName() + " t").getResultList();
-	}
 }

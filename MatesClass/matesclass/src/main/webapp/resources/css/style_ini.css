@@ -59,7 +59,7 @@ a:hover {
 	width: 80%;
 	margin-right: 7%;
 	margin-left: 7%;
-	padding: 40px;
+	padding: 60px;
 }
 
 #pie {
@@ -152,14 +152,14 @@ a:hover {
 	left: 50%;
 	width: 800px;
 	height: 350px;
-	margin-left: -400px;
+	margin-left: -450px;
 	margin-top: 10px;
 	padding: 15px;
 	position: absolute;
 	z-index: 1;
 }
 
-#categorias>div {
+.btncategorias {
 	margin: 30px;
 	width: 300px;
 	height: 115px;
@@ -176,11 +176,11 @@ a:hover {
 	border: 3px solid #f1f2eb;
 }
 
-.catizda {
+.fleft {
 	float: left;
 }
 
-.catdcha {
+.fright {
 	float: right;
 }
 
@@ -218,5 +218,9 @@ td {
 
 .button:hover {
 	color: #cccccc;
+}
+
+#select {
+	border-style:none;
 }
 

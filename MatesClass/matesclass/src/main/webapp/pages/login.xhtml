@@ -10,22 +10,24 @@
 <h:head>
 	<title>MatesClass Login</title>
 	<h:outputStylesheet name="style_log.css" library="css" />
-	<link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon.ico']}" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['favicon.ico']}" />
 </h:head>
 <h:body>
 	<h:form>
 		<img class="centrar" src="../resources/images/logo_nombre.svg" />
 		<div class="centrardebajo">
-			<p:inputText id="usuario" styleClass="text" />
+			<p:inputText id="usuario" styleClass="anchocaja" />
 			<p:watermark for="usuario" value="Usuario *" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="text" type="password"/>
+			<p:inputText id="pass" styleClass="anchocaja" type="password" />
 			<p:watermark for="pass" value="Contraseña *" />
 			<br />
-			<p:commandButton id="login" styleClass="button fleft" value="Login" 
-			action="inicio.jsf"/>
-			<p:commandButton id="registro" styleClass="button fright" value="Registrarse" />
+			<p:commandButton id="login" styleClass="button anchocaja"
+				value="Login" action="inicio.jsf" />
 		</div>
+		<span id="reg">¿Todavía no estas registrado? Hazlo 
+		<strong><a href="registro.jsf">aquí.</a></strong></span>
 	</h:form>
 </h:body>
 </html>
