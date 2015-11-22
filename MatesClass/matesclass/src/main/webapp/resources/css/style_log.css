@@ -127,3 +127,17 @@ a:hover {
 	margin-top: 150px;
 	color: #f1f2eb;
 }
+
+.exito {
+	padding: 10px;
+	background-color: rgba(250, 250, 250, 0.2);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: 90px;
+	margin-top: 200px;
+	color: #011826;
+	font-size:1.2em;
+	text-shadow: 1px 1px 8px rgba(250, 250, 250, 0.9);
+	border: 0.1em dotted #f1f2eb;
+}

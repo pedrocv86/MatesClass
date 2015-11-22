@@ -17,17 +17,18 @@
 	<h:form>
 		<img class="centrar" src="../resources/images/logo_nombre.svg" />
 		<div class="centrardebajo">
-			<p:inputText id="usuario" styleClass="anchocaja" />
+			<p:inputText id="usuario" styleClass="anchocaja" value="#{LoginMB.idUsuario}" />
 			<p:watermark for="usuario" value="Usuario *" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="anchocaja" type="password" />
+			<p:inputText id="pass" styleClass="anchocaja" type="password" value="#{LoginMB.pass}"/>
 			<p:watermark for="pass" value="Contraseña *" />
 			<br />
 			<p:commandButton id="login" styleClass="button anchocaja"
-				value="Login" action="inicio.jsf" />
+				value="Login" action="#{LoginMB.loginUsuario}" />
 		</div>
 		<span id="reg">¿Todavía no estas registrado? Hazlo 
 		<strong><a href="registro.jsf">aquí.</a></strong></span>
+		
 	</h:form>
 </h:body>
 </html>

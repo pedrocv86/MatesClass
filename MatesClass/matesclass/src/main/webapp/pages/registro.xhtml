@@ -16,20 +16,31 @@
 	<h:form>
 		<img class="centrarizda" src="../resources/images/logo_nombre.svg" />
 		<div class="centrardcha">
-			<p:inputText id="usuario" styleClass="anchocaja" />
+			<p:inputText id="usuario" styleClass="anchocaja" value="#{RegistroMB.idUsuario}"/>
 			<p:watermark for="usuario" value="Usuario *" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="anchocaja" type="password"/>
+			<p:inputText id="pass" styleClass="anchocaja" type="password" value="#{RegistroMB.pass}"/>
 			<p:watermark for="pass" value="Contraseña *" />
 			<br /><br />
-			<p:inputText id="email" styleClass="anchocaja"/>
+			<p:inputText id="email" styleClass="anchocaja" value="#{RegistroMB.email}"/>
 			<p:watermark for="email" value="Email *" />
 			<br />
 			<p:commandButton id="registro" styleClass="button anchocaja" value="Registrarse" 
-			action="inicio.jsf"/>
+			action="#{RegistroMB.guardarUsuario}" update="@form"/>
 		</div>
 		<span id="volver">Volver al 
 		<strong><a href="login.jsf">login.</a></strong></span>
+		
+		<p:outputPanel styleClass="exito" rendered="#{RegistroMB.msgExito != null}">
+			<strong>
+			<p:outputLabel value="#{RegistroMB.msgExito}"></p:outputLabel>
+ 			<br />
+			<p:outputLabel value="se ha registrado satisfactoriamente."></p:outputLabel>
+			</strong>
+			<br /> <br />
+			<i><p:outputLabel value="Vuelva al login e inicie sesión"></p:outputLabel></i>
+		</p:outputPanel>
+			
 	</h:form>
 </h:body>
 </html>

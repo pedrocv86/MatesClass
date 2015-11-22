@@ -27,7 +27,7 @@ public class Usuario implements Serializable {
 	private String password;
 
 	@Column(name = "EMAIL")
-	private String nombreLogro;
+	private String email;
 
 	@Column(name = "FH_ALTA")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -37,11 +37,11 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(String idUsuario, String password, String nombreLogro,
+	public Usuario(String idUsuario, String password, String email,
 			Date fhAlta) {
 		this.idUsuario = idUsuario;
 		this.password = password;
-		this.nombreLogro = nombreLogro;
+		this.email = email;
 		this.fhAlta = fhAlta;
 	}
 
@@ -61,12 +61,12 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public String getNombreLogro() {
-		return nombreLogro;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNombreLogro(String nombreLogro) {
-		this.nombreLogro = nombreLogro;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getFhAlta() {

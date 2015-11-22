@@ -28,13 +28,38 @@
 
 <h:body>
 
-	<ui:include src="template/cabecera.xhtml" />
+	<div id="cabecera">
+			<div id="logo"></div>
+			<div id="titulo"></div>
+			<div id="usuario">
+				<strong><p:commandLink id="idUsu" action="/pages/inicio.jsf">
+        			<h:outputText value="#{PlantillaMB.idUsuario}" />
+    			</p:commandLink></strong> 
+				<br /> 
+				<span id="usu"><a href="/matesclass/pages/modifdatos.jsf">Modificar datos</a>
+					- <a href="/matesclass/pages/login.jsf">Cerrar sesión</a></span>
+			</div>
+			<div id="logros">
+				<p:graphicImage value="/resources/images/logros/logro1.png" 
+				styleClass="logro" title="¡1º superado!" alt="logro1º"/>
+				<p:graphicImage value="/resources/images/logros/logro2.png" 
+				styleClass="logro" title="¡2º superado!" alt="logro2º"/>
+			</div>
+	</div>
 
-	<ui:include src="template/navegacion.xhtml" />
+	<div id="navegacion">
+		<a href="/matesclass/pages/listadopartidas.jsf">Ver listado de partidas</a> | <a
+			href="/matesclass/pages/nuevapartida.jsf">Crear nueva partida</a>
+	</div>
 
 	<ui:insert name="principal" />
 
-	<ui:include src="template/pie.xhtml" />
+	<div id="pie">
+			<a href="/matesclass/pages/pie/autor.jsf">Autor</a>&nbsp; - &nbsp;
+			<a href="/matesclass/pages/pie/licencia.jsf">Licencia</a>&nbsp; - &nbsp; 
+			<a href="https://github.com/pedrocv86/MatesClass" target="_blank">Código fuente</a>&nbsp; - &nbsp; 
+			<a href="/matesclass/pages/pie/acerca.jsf">Acerca de MatesClass</a>
+	</div>
 
 </h:body>
 </html>

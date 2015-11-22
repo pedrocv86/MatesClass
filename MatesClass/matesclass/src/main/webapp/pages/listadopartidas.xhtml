@@ -17,41 +17,45 @@
 		</ui:define>
 
 		<ui:define name="principal">
-			<h:form>
-				<div id="principal">
 
-					<table id="partidas">
-						<tr>
-							<th>Partida</th>
-							<th>Fecha de creación</th>
-							<th>Puntuación</th>
-							<th>Progreso</th>
-						</tr>
-						<tr>
-							<td>Navidades</td>
-							<td>28/12/2014</td>
-							<td>385 puntos</td>
-							<td>Nivel 2 [4º ESO]</td>
-						</tr>
-						<tr>
-							<td>Partida Otoño</td>
-							<td>05/10/2015</td>
-							<td>860 puntos</td>
-							<td>Nivel 6 [2º ESO]</td>
-						</tr>
-						<tr>
-							<td>Prueba Febrero</td>
-							<td>18/02/2015</td>
-							<td>1240 puntos</td>
-							<td>Nivel 3 [1º ESO]</td>
-						</tr>
-					</table>
-					<br /> <br />
-
-				</div>
-			</h:form>
+			<div id="principal">
+				<h:form id="myform">
+				
+					<p:dataTable id="listaPartidas" var="partida"
+						emptyMessage="No tienes partidas. Pulsa 'Crear nueva partida' "
+						value="#{ListaPartidasMB.listaPartidas}" selectionMode="single"
+						selection="#{ListaPartidasMB.partida}"
+						rowKey="#{partida.idPartida}">
+						<f:facet name="header">
+            				PARTIDAS
+        				</f:facet>
+						<p:column headerText="Partida">
+							<h:outputText value="#{partida.nombrePartida}" />
+						</p:column>
+						<p:column headerText="Fecha creación">
+							<h:outputText value="#{partida.fhCreacion}" />
+						</p:column>
+						<p:column headerText="Puntuación">
+							<h:outputText value="#{partida.puntuacion}" />
+						</p:column>
+						<p:column headerText="Progreso">
+							<h:outputText value="#{partida.progreso}" />
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton process="listaPartidas" icon="ui-icon-play"
+								value="¡Juega!" action="#{ListaPartidasMB.jugarPartida}" />
+								&nbsp;&nbsp;
+								<p:commandButton process="listaPartidas"
+								icon="ui-icon-closethick" value="Eliminar"
+								action="#{ListaPartidasMB.eliminarPartida}" update="listaPartidas" >
+								</p:commandButton>
+						</f:facet>
+					</p:dataTable>
+					
+				</h:form>
+			</div>
+			
 		</ui:define>
-
 	</ui:composition>
 </h:body>
 </html>

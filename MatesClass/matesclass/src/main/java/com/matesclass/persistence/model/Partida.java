@@ -43,19 +43,23 @@ public class Partida implements Serializable {
 
 	@Column(name = "ID_USARIO")
 	private String idUsuario;
+	
+	@Column(name = "COD_PROGRESO")
+	private String codProgreso;
 
 	public Partida() {
 
 	}
 
 	public Partida(Long idPartida, String nombrePartida, Date fhCreacion,
-			Long puntuacion, String progreso, String idUsuario) {
+			Long puntuacion, String progreso, String idUsuario, String codProgreso) {
 		this.idPartida = idPartida;
 		this.nombrePartida = nombrePartida;
 		this.fhCreacion = fhCreacion;
 		this.puntuacion = puntuacion;
 		this.progreso = progreso;
 		this.idUsuario = idUsuario;
+		this.codProgreso = codProgreso;
 	}
 
 	public Long getIdPartida() {
@@ -104,6 +108,14 @@ public class Partida implements Serializable {
 
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	public String getCodProgreso() {
+		return codProgreso;
+	}
+
+	public void setCodProgreso(String codProgreso) {
+		this.codProgreso = codProgreso;
 	}
 
 }
