@@ -14,11 +14,14 @@ import com.matesclass.persistence.model.Partida;
 @Repository
 public class PartidaDAO extends GenericDAO {
 
-	public void crearPartida(String nombrePartida, String idUsuario,
+	public Partida crearPartida(String nombrePartida, String idUsuario,
 			String progreso, String codProgreso) {
+		Partida partida = new Partida();
+
+		DateFormat df = new SimpleDateFormat("dd/MM/yy");
+		String nowDate = df.format(new Date());
+
 		try {
-			DateFormat df = new SimpleDateFormat("dd/MM/yy");
-			String nowDate = df.format(new Date());
 			String consulta = "INSERT INTO PARTIDA (NOMBRE_PARTIDA, FH_CREACION, PUNTUACION, PROGRESO, ID_USUARIO, COD_PROGRESO)"
 					+ " VALUES ('"
 					+ nombrePartida
@@ -32,18 +35,39 @@ public class PartidaDAO extends GenericDAO {
 					+ codProgreso + "')";
 			consultaDB().executeUpdate(consulta);
 
+			String returnPartida = "SELECT * FROM PARTIDA WHERE ID_PARTIDA = "
+					+ "(SELECT MAX(ID_PARTIDA) FROM PARTIDA)";
+			ResultSet rs = consultaDB().executeQuery(returnPartida);
+
+			while (rs.next()) {
+				partida.setIdPartida(rs.getLong("ID_PARTIDA"));
+				partida.setNombrePartida(rs.getString("NOMBRE_PARTIDA"));
+				partida.setFhCreacion(rs.getDate("FH_CREACION"));
+				partida.setPuntuacion(rs.getLong("PUNTUACION"));
+				partida.setProgreso(rs.getString("PROGRESO"));
+				partida.setIdUsuario(rs.getString("ID_USUARIO"));
+				partida.setCodProgreso(rs.getString("COD_PROGRESO"));
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
+
+		return partida;
 	}
 
 	public ArrayList<Partida> listarPartidas(String idUsuario) {
 		ArrayList<Partida> listaPartidas = new ArrayList<Partida>();
 		try {
 			String consulta = "SELECT * FROM PARTIDA WHERE ID_USUARIO='"
-					+ idUsuario + "'";
+					+ idUsuario + "' ORDER BY FH_CREACION";
 			ResultSet rs = consultaDB().executeQuery(consulta);
 			while (rs.next()) {
 				Partida partida = new Partida();
@@ -54,27 +78,104 @@ public class PartidaDAO extends GenericDAO {
 				partida.setProgreso(rs.getString("PROGRESO"));
 				partida.setIdUsuario(rs.getString("ID_USUARIO"));
 				partida.setCodProgreso(rs.getString("COD_PROGRESO"));
-				
+
 				listaPartidas.add(partida);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return listaPartidas;
 	}
-	
+
 	public void eliminarPartida(Long idPartida) {
 		try {
-			String consulta = "DELETE FROM PARTIDA WHERE ID_PARTIDA='" + idPartida + "'";
+			String consulta = "DELETE FROM PARTIDA WHERE ID_PARTIDA='"
+					+ idPartida + "'";
 			consultaDB().executeUpdate(consulta);
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void cambiarPuntuacion(Long idPartida, Long puntos) {
+		try {
+			String consulta = "UPDATE PARTIDA SET PUNTUACION=(PUNTUACION + ("
+					+ puntos + ")) WHERE ID_PARTIDA=" + idPartida;
+			consultaDB().executeUpdate(consulta);
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public Long cargarPuntuacion(Long idPartida) {
+		Long puntuacion = null;
+		try {
+			String consulta = "SELECT PUNTUACION FROM PARTIDA WHERE ID_PARTIDA='"
+					+ idPartida + "'";
+			ResultSet rs = consultaDB().executeQuery(consulta);
+
+			while (rs.next()) {
+				puntuacion = rs.getLong("PUNTUACION");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return puntuacion;
+
+	}
+	
+	public void guardarProgreso(Long idPartida, String progreso, String codProgreso) {
+		try {
+			String consulta = "UPDATE PARTIDA SET PROGRESO='" + progreso 
+					+ "', COD_PROGRESO='" + codProgreso + "' WHERE ID_PARTIDA=" + idPartida;
+			consultaDB().executeUpdate(consulta);
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

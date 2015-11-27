@@ -1,26 +1,26 @@
 package com.matesclass.business;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+
 
 import com.matesclass.persistence.dao.LogroDAO;
 
-@Service("logroService")
 public class LogroService{
 	
-	@Autowired
-	LogroDAO logroDAO = new LogroDAO();
+	private LogroDAO logroDAO = new LogroDAO();
 
-	
-	public String probarCapas(String text) {
-		return logroDAO.probarCapas(text);
+
+	public void insertarLogro(String idUsuario, Long idLogro) {
+		logroDAO.insertarLogro(idUsuario, idLogro);
 	}
-
-
+	
+	public ArrayList<Long> listarLogros(String idUsuario) {
+		return logroDAO.listarLogros(idUsuario);
+	}
+	
 	public LogroDAO getLogroDAO() {
 		return logroDAO;
 	}
-
 
 	public void setLogroDAO(LogroDAO logroDAO) {
 		this.logroDAO = logroDAO;

@@ -5,8 +5,10 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.matesclass.business.PartidaService;
+import com.matesclass.persistence.model.Partida;
 import com.matesclass.persistence.model.Usuario;
 
 @ManagedBean(name = "NuevaPartidaMB")
@@ -25,6 +27,7 @@ public class NuevaPartidaManagedBean implements Serializable {
 	private String nombrePartida;
 	private String progreso;
 	private String codProgreso;
+	private Partida partida;
 	
 	
 	@PostConstruct
@@ -41,10 +44,11 @@ public class NuevaPartidaManagedBean implements Serializable {
 	
 	public String asignarNombrePartida(){
 		char curso = codProgreso.charAt(0);
-		String pantalla = "pantallas/" + curso + "/" + codProgreso + ".jsf";
+		String pantalla = "pantallas/" + curso + "/" + codProgreso + ".jsf?faces-redirect=true";
 		
-		partidaService.crearPartida(nombrePartida, idUsuario, progreso, codProgreso);
-		
+		setPartida(partidaService.crearPartida(nombrePartida, idUsuario, progreso, codProgreso));
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("partida", partida);
+	
 		return pantalla;
 	}
 	
@@ -94,6 +98,14 @@ public class NuevaPartidaManagedBean implements Serializable {
 
 	public void setCodProgreso(String codProgreso) {
 		this.codProgreso = codProgreso;
+	}
+
+	public Partida getPartida() {
+		return partida;
+	}
+
+	public void setPartida(Partida partida) {
+		this.partida = partida;
 	}
 	
 }

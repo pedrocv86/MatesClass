@@ -9,9 +9,9 @@ public class PartidaService {
 
 	private PartidaDAO partidaDAO = new PartidaDAO();
 
-	public void crearPartida(String nombrePartida, String idUsuario,
+	public Partida crearPartida(String nombrePartida, String idUsuario,
 			String progreso, String codProgreso) {
-		partidaDAO.crearPartida(nombrePartida, idUsuario, progreso, codProgreso);
+		return partidaDAO.crearPartida(nombrePartida, idUsuario, progreso, codProgreso);
 	}
 	
 	public List<Partida> listarPartidas(String idUsuario) {
@@ -21,5 +21,17 @@ public class PartidaService {
 	
 	public void eliminarPartida(Long idPartida) {
 		partidaDAO.eliminarPartida(idPartida);
+	}
+	
+	public void cambiarPuntuacion(Long idPartida, Long puntos) {
+		partidaDAO.cambiarPuntuacion(idPartida, puntos);
+	}
+	
+	public Long cargarPuntuacion(Long idPartida) {
+		return partidaDAO.cargarPuntuacion(idPartida);
+	}
+	
+	public void guardarProgreso(Long idPartida, String progreso, String codProgreso) {
+		partidaDAO.guardarProgreso(idPartida, progreso, codProgreso);
 	}
 }

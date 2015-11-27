@@ -43,7 +43,7 @@ public class ListadoPartidasManagedBean implements Serializable {
 		char curso = partida.getCodProgreso().charAt(0);
 		String ruta="pantallas/" + curso + "/" + partida.getCodProgreso() + ".jsf";
 		
-		return ruta;
+		return ruta + "?faces-redirect=true";
 	}
 	
 	public void eliminarPartida(){
