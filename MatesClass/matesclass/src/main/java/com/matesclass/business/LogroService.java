@@ -18,12 +18,4 @@ public class LogroService{
 		return logroDAO.listarLogros(idUsuario);
 	}
 	
-	public LogroDAO getLogroDAO() {
-		return logroDAO;
-	}
-
-	public void setLogroDAO(LogroDAO logroDAO) {
-		this.logroDAO = logroDAO;
-	}
-
 }

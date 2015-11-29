@@ -16,8 +16,6 @@ public class LogroDAO extends GenericDAO {
 					+ " VALUES ('" + idLogro + "', '" + idUsuario + "')";
 			consultaDB().executeUpdate(consulta);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -33,14 +31,12 @@ public class LogroDAO extends GenericDAO {
 				Long logro = rs.getLong("ID_LOGRO");
 				listaLogros.add(logro);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
