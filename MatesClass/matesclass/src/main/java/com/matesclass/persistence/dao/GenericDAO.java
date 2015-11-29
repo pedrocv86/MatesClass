@@ -7,14 +7,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public abstract class GenericDAO {
-
-	public Statement consultaDB() throws ClassNotFoundException, SQLException {
-
-		Class.forName("oracle.jdbc.OracleDriver");
-
-		Connection con = DriverManager.getConnection(
-				"jdbc:oracle:thin:@localhost:1521:xe", "MATESCLASS",
-				"pcvmatesclass");
+	
+	Connection con;
+	
+	public GenericDAO () {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "MATESCLASS", "pcvmatesclass");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Statement consultaDB() throws SQLException {
 
 		Statement st = con.createStatement();
 

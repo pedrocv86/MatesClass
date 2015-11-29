@@ -39,6 +39,7 @@ public class ListadoPartidasManagedBean implements Serializable {
 	
 	public String jugarPartida(){
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("partida", partida);		
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("puntos", partida.getPuntuacion());		
 		
 		char curso = partida.getCodProgreso().charAt(0);
 		String ruta="pantallas/" + curso + "/" + partida.getCodProgreso() + ".jsf";

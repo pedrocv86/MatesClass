@@ -39,23 +39,23 @@ public class PantallasManagedBean implements Serializable {
 		setUsuario(PlantillaManagedBean.usuario);
 		setIdUsuario(usuario.getIdUsuario());
 
+		
 		setPartida((Partida) FacesContext.getCurrentInstance()
 				.getExternalContext().getFlash().get("partida"));
 		setIdPartida(partida.getIdPartida());
+	
 		setPuntos(partidaService.cargarPuntuacion(idPartida));
 		
 	}
 
 	public void confirmar(String respuesta, String codProgreso) {
 		if (respuesta.equals(seleccion)) {
-			partidaService.cambiarPuntuacion(idPartida, 100L);
-			setPuntos(partidaService.cargarPuntuacion(idPartida));
-			partidaService.guardarProgreso(idPartida, progreso(codProgreso), codProgreso);
+			partidaService.guardarProgreso(idPartida, 100L, progreso(codProgreso), codProgreso);
 			String ruta = codProgreso + ".jsf?faces-redirect=true";
 			if ('6'== codProgreso.charAt(2)){
-				partidaService.guardarProgreso(idPartida, "Finalizada", codProgreso);
 				String logro = String.valueOf(codProgreso.charAt(0));
 				Long idLogro = Long.parseLong(logro);
+				partidaService.guardarProgreso(idPartida, 100L, logro + "º Finalizado", codProgreso);
 				logroService.insertarLogro(idUsuario, idLogro);
 			}
 			try {
@@ -67,8 +67,8 @@ public class PantallasManagedBean implements Serializable {
 				e.printStackTrace();
 			}
 		} else {
-			partidaService.cambiarPuntuacion(idPartida, -20L);
-			setPuntos(partidaService.cargarPuntuacion(idPartida));
+			setPuntos(puntos-40L);
+			partidaService.cambiarPuntuacion(idPartida, -40L);
 			error();
 		}
 	}

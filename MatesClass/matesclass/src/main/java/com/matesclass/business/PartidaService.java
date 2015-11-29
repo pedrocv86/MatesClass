@@ -15,7 +15,6 @@ public class PartidaService {
 	}
 	
 	public List<Partida> listarPartidas(String idUsuario) {
-		
 		return partidaDAO.listarPartidas(idUsuario);
 	}
 	
@@ -31,7 +30,7 @@ public class PartidaService {
 		return partidaDAO.cargarPuntuacion(idPartida);
 	}
 	
-	public void guardarProgreso(Long idPartida, String progreso, String codProgreso) {
-		partidaDAO.guardarProgreso(idPartida, progreso, codProgreso);
+	public void guardarProgreso(Long idPartida, Long puntos, String progreso, String codProgreso) {
+		partidaDAO.guardarProgreso(idPartida, puntos, progreso, codProgreso);
 	}
 }

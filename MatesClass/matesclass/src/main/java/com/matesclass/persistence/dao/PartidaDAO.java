@@ -23,16 +23,8 @@ public class PartidaDAO extends GenericDAO {
 
 		try {
 			String consulta = "INSERT INTO PARTIDA (NOMBRE_PARTIDA, FH_CREACION, PUNTUACION, PROGRESO, ID_USUARIO, COD_PROGRESO)"
-					+ " VALUES ('"
-					+ nombrePartida
-					+ "', '"
-					+ nowDate
-					+ "', '0', '"
-					+ progreso
-					+ "', '"
-					+ idUsuario
-					+ "', '"
-					+ codProgreso + "')";
+					+ " VALUES ('" + nombrePartida + "', '" + nowDate + "', '0', '"
+					+ progreso + "', '" + idUsuario + "', '" + codProgreso + "')";
 			consultaDB().executeUpdate(consulta);
 
 			String returnPartida = "SELECT * FROM PARTIDA WHERE ID_PARTIDA = "
@@ -48,14 +40,12 @@ public class PartidaDAO extends GenericDAO {
 				partida.setIdUsuario(rs.getString("ID_USUARIO"));
 				partida.setCodProgreso(rs.getString("COD_PROGRESO"));
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -81,14 +71,12 @@ public class PartidaDAO extends GenericDAO {
 
 				listaPartidas.add(partida);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -102,14 +90,12 @@ public class PartidaDAO extends GenericDAO {
 					+ idPartida + "'";
 			consultaDB().executeUpdate(consulta);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -121,14 +107,12 @@ public class PartidaDAO extends GenericDAO {
 					+ puntos + ")) WHERE ID_PARTIDA=" + idPartida;
 			consultaDB().executeUpdate(consulta);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -145,14 +129,12 @@ public class PartidaDAO extends GenericDAO {
 			while (rs.next()) {
 				puntuacion = rs.getLong("PUNTUACION");
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -160,20 +142,19 @@ public class PartidaDAO extends GenericDAO {
 
 	}
 	
-	public void guardarProgreso(Long idPartida, String progreso, String codProgreso) {
+	public void guardarProgreso(Long idPartida, Long puntos, String progreso, String codProgreso) {
 		try {
 			String consulta = "UPDATE PARTIDA SET PROGRESO='" + progreso 
-					+ "', COD_PROGRESO='" + codProgreso + "' WHERE ID_PARTIDA=" + idPartida;
+					+ "', COD_PROGRESO='" + codProgreso + "', PUNTUACION=(PUNTUACION + ("
+					+ puntos + ")) WHERE ID_PARTIDA=" + idPartida;
 			consultaDB().executeUpdate(consulta);
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				consultaDB().close();
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}

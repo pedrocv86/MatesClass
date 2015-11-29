@@ -21,10 +21,14 @@ public class UsuarioDAO extends GenericDAO {
 					+ " VALUES ('" + idUsuario + "', '" + pass + "', '" + email + "', '" + nowDate + "')";
 			consultaDB().executeUpdate(consulta);
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		String exito = "El usuario " + idUsuario;
@@ -43,10 +47,14 @@ public class UsuarioDAO extends GenericDAO {
 			usuario.setEmail(rs.getString("EMAIL"));
 			usuario.setFhAlta(rs.getDate("FH_ALTA"));
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consultaDB().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return usuario;
