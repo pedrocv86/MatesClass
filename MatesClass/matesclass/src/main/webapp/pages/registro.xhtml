@@ -10,37 +10,67 @@
 <h:head>
 	<title>Registro | MatesClass</title>
 	<h:outputStylesheet name="style_log.css" library="css" />
-	<link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon.ico']}" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['favicon.ico']}" />
 </h:head>
 <h:body>
+	<p:tooltip />
 	<h:form>
 		<img class="centrarizda" src="../resources/images/logo_nombre.svg" />
 		<div class="centrardcha">
-			<p:inputText id="usuario" styleClass="anchocaja" value="#{RegistroMB.idUsuario}"/>
-			<p:watermark for="usuario" value="Usuario *" />
+			<p:outputLabel for="usuario" value="Usuario" />
+			<p:inputText id="usuario" styleClass="anchocaja" required="true"
+				value="#{RegistroMB.idUsuario}">
+				<f:validateLength minimum="4" maximum="30" />
+			</p:inputText>
+			<p:message for="usuario" display="tooltip" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="anchocaja" type="password" value="#{RegistroMB.pass}"/>
-			<p:watermark for="pass" value="Contraseña *" />
-			<br /><br />
-			<p:inputText id="email" styleClass="anchocaja" value="#{RegistroMB.email}"/>
-			<p:watermark for="email" value="Email *" />
+			
+			<p:outputLabel for="pwd1" value="Contraseña" />
+			<p:password id="pwd1" value="#{RegistroMB.pass}" match="pwd2"
+				styleClass="anchocaja" required="true">
+				<f:validateLength minimum="4" maximum="20" />
+			</p:password>
+			<p:outputLabel for="pwd2" value="Confirme la contraseña" />
+			<p:password id="pwd2" value="#{RegistroMB.pass}"
+				styleClass="anchocaja" required="true" />
+			<p:message for="pwd1" display="tooltip" />
+			<p:message for="pwd2" display="tooltip" />
+			<br /> <br />
+			
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" styleClass="anchocaja" required="true"
+				value="#{RegistroMB.email}">
+				<f:validateRegex
+					pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</p:inputText>
+			<p:message for="email" display="tooltip" />
 			<br />
-			<p:commandButton id="registro" styleClass="button anchocaja" value="Registrarse" 
-			action="#{RegistroMB.guardarUsuario}" update="@form"/>
+			
+			<p:commandButton id="registro" styleClass="button anchocaja"
+				value="Registrarse" action="#{RegistroMB.guardarUsuario}"
+				update="@form" />
 		</div>
-		<span id="volver">Volver al 
-		<strong><a href="login.jsf">login.</a></strong></span>
-		
-		<p:outputPanel styleClass="exito" rendered="#{RegistroMB.msgExito != null}">
-			<strong>
-			<p:outputLabel value="#{RegistroMB.msgExito}"></p:outputLabel>
- 			<br />
-			<p:outputLabel value="se ha registrado satisfactoriamente."></p:outputLabel>
+		<span id="volver">Volver al <strong><a
+				href="login.jsf">login.</a></strong></span>
+
+		<p:outputPanel styleClass="avisos regexito"
+			rendered="#{RegistroMB.exitoReg}">
+			<strong> <p:outputLabel value="#{RegistroMB.msgExito}"></p:outputLabel>
+				<br /> <p:outputLabel value="se ha registrado satisfactoriamente."></p:outputLabel>
 			</strong>
-			<br /> <br />
+			<br />
+			<br />
 			<i><p:outputLabel value="Vuelva al login e inicie sesión"></p:outputLabel></i>
 		</p:outputPanel>
-			
+		
+		<p:outputPanel styleClass="avisos regerror"
+			rendered="#{RegistroMB.errorReg}">
+			<strong> <p:outputLabel value="Ya existe un usuario con esa ID">
+			</p:outputLabel></strong> 
+				
+		</p:outputPanel>
+
 	</h:form>
 </h:body>
 </html>

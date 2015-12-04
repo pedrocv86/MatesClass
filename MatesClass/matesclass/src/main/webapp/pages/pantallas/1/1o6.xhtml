@@ -17,13 +17,16 @@
 		</ui:define>
 
 		<ui:define name="principal">
-			
+
 			<div id="principal">
 				<h:form id="form">
 					<p:outputLabel id="sup" value="¡Ha superado 1º ESO con #{PantallasMB.puntos} puntos! " styleClass="puntos" />
 					<br /><br />
-					<a href="/matesclass/pages/inicio.jsf" style="color:black;">Volver al inicio</a>
 					
+					<p:graphicImage value="/resources/images/logros/logro1.png"
+						styleClass="logro" title="¡1º superado!" alt="logro1º" />
+					<br />	
+					<a href="/matesclass/pages/inicio.jsf" style="color: black;">Volver al inicio</a>	
 				</h:form>
 			</div>
 		</ui:define>

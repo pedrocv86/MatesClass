@@ -1,6 +1,7 @@
 package com.matesclass.persistence.dao;
 
 import java.util.Date;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -11,9 +12,14 @@ import org.springframework.stereotype.Repository;
 import com.matesclass.persistence.model.Usuario;
 
 @Repository
-public class UsuarioDAO extends GenericDAO {
+public class UsuarioDAO extends GenericDAO  implements Serializable {
 
-	public String insertarUsuario(String idUsuario, String pass, String email) {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8876416769214936583L;
+
+	public String insertarUsuario(String idUsuario, String pass, String email)  throws SQLException  {
 		try {
 			DateFormat df = new SimpleDateFormat("dd/MM/yy");
 			String nowDate = df.format(new Date());
@@ -22,7 +28,7 @@ public class UsuarioDAO extends GenericDAO {
 			consultaDB().executeUpdate(consulta);
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SQLException(e);
 		} finally {
 			try {
 				consultaDB().close();

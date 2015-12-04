@@ -1,11 +1,18 @@
 package com.matesclass.business;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 
 
 import com.matesclass.persistence.dao.LogroDAO;
 
-public class LogroService{
+public class LogroService implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5448328310512352826L;
 	
 	private LogroDAO logroDAO = new LogroDAO();
 

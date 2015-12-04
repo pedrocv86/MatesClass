@@ -1,5 +1,6 @@
 package com.matesclass.persistence.dao;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,7 +8,12 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LogroDAO extends GenericDAO {
+public class LogroDAO extends GenericDAO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 418156487060438413L;
 
 	public void insertarLogro(String idUsuario, Long idLogro) {
 

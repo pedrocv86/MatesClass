@@ -14,21 +14,38 @@
 		href="#{resource['favicon.ico']}" />
 </h:head>
 <h:body>
+	<p:tooltip />
 	<h:form>
-		<img class="centrar" src="../resources/images/logo_nombre.svg" />
+		<p:graphicImage value="/resources/images/logo_nombre.svg"
+			styleClass="centrar" />
 		<div class="centrardebajo">
-			<p:inputText id="usuario" styleClass="anchocaja" value="#{LoginMB.idUsuario}" />
-			<p:watermark for="usuario" value="Usuario *" />
+			<p:outputLabel for="usuario" value="Usuario" />
+			<p:inputText id="usuario" styleClass="anchocaja"
+				value="#{LoginMB.idUsuario}" required="true">
+				<f:validateLength minimum="4" maximum="30" />
+			</p:inputText>
+			<p:message for="usuario" display="tooltip" />
 			<br /> <br />
-			<p:inputText id="pass" styleClass="anchocaja" type="password" value="#{LoginMB.pass}"/>
-			<p:watermark for="pass" value="Contraseña *" />
+
+			<p:outputLabel for="pass" value="Contraseña" />
+			<p:inputText id="pass" styleClass="anchocaja" type="password"
+				value="#{LoginMB.pass}" required="true">
+				<f:validateLength minimum="4" maximum="30" />
+			</p:inputText>
+			<p:message for="pass" display="tooltip" />
 			<br />
+
 			<p:commandButton id="login" styleClass="button anchocaja"
-				value="Login" action="#{LoginMB.loginUsuario}" />
+				value="Login" action="#{LoginMB.loginUsuario}" update="@form" />
 		</div>
-		<span id="reg">¿Todavía no estas registrado? Hazlo 
-		<strong><a href="registro.jsf">aquí.</a></strong></span>
-		
+		<span id="reg">¿Todavía no estas registrado? Hazlo <strong><a
+				href="registro.jsf">aquí.</a></strong></span>
+				
+		<p:outputPanel styleClass="avisos logerror" rendered="#{LoginMB.noExists}">
+			<strong><p:outputLabel value="Usuario y/o contraseña erróneo o no existe">
+				</p:outputLabel></strong>
+		</p:outputPanel>
+
 	</h:form>
 </h:body>
 </html>

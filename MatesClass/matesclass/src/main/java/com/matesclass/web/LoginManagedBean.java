@@ -13,31 +13,39 @@ import com.matesclass.persistence.model.Usuario;
 @ManagedBean(name = "LoginMB")
 @ViewScoped
 public class LoginManagedBean implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2911220009370262740L;
 
 	private UsuarioService usuarioService = new UsuarioService();
-	
+
 	private String idUsuario;
 	private String pass;
 	private Usuario usuario;
-	
-	
+	private boolean noExists;
+
 	@PostConstruct
 	public void init() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
 	}
 
-	public String loginUsuario(){
-		setUsuario(usuarioService.loginUsuario(idUsuario, pass));
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("usuario", usuario);		
-		
-		return "inicio.jsf";
+	public String loginUsuario() {
+		Usuario usuLogin = usuarioService.loginUsuario(idUsuario, pass);
+		if (usuLogin.getIdUsuario() != null) {
+			setUsuario(usuLogin);
+			FacesContext.getCurrentInstance().getExternalContext().getFlash()
+					.put("usuario", usuario);
+			return "inicio.jsf";
+		} else {
+			setNoExists(true);
+			return null;
+		}
+
 	}
-	
+
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
 	}
@@ -69,4 +77,13 @@ public class LoginManagedBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public boolean isNoExists() {
+		return noExists;
+	}
+
+	public void setNoExists(boolean noExists) {
+		this.noExists = noExists;
+	}
+
 }

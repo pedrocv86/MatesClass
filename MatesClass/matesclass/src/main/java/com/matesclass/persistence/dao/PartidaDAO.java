@@ -1,5 +1,6 @@
 package com.matesclass.persistence.dao;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -12,7 +13,12 @@ import org.springframework.stereotype.Repository;
 import com.matesclass.persistence.model.Partida;
 
 @Repository
-public class PartidaDAO extends GenericDAO {
+public class PartidaDAO extends GenericDAO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5554952434855577965L;
 
 	public Partida crearPartida(String nombrePartida, String idUsuario,
 			String progreso, String codProgreso) {

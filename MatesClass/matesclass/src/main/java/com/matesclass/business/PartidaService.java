@@ -1,12 +1,18 @@
 package com.matesclass.business;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.matesclass.persistence.dao.PartidaDAO;
 import com.matesclass.persistence.model.Partida;
 
-public class PartidaService {
+public class PartidaService implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8632621829202080787L;
+	
 	private PartidaDAO partidaDAO = new PartidaDAO();
 
 	public Partida crearPartida(String nombrePartida, String idUsuario,
